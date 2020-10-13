@@ -65,21 +65,21 @@ public class WebBlogApplication implements CommandLineRunner {
 //		u2.setEmail("admin2@gmail.com");
 //		u2.setName("IAM ADMIN2");
 //		u2.setRegisterDate(u2.getRegisterDate());
-//		u1.setRoleName(r3.getRoleOfUser());
+//		u2.setRoleName(r3.getRoleOfUser());
 //
 //		u3.setUsername("imbac");
 //		u3.setPassword("imbac");
 //		u3.setEmail("imbac@gmail.com");
 //		u3.setName("Natthawut Sunthornrot");
 //		u3.setRegisterDate(u3.getRegisterDate());
-//		u1.setRoleName(r2.getRoleOfUser());
+//		u3.setRoleName(r2.getRoleOfUser());
 //
 //		u4.setUsername("newbac");
 //		u4.setPassword("newbac");
 //		u4.setEmail("newbac@gmail.com");
 //		u4.setName("Newbac Natthawut");
 //		u4.setRegisterDate(u4.getRegisterDate());
-//		u1.setRoleName(r1.getRoleOfUser());
+//		u4.setRoleName(r1.getRoleOfUser());
 //
 //		listOfUsers.add(u1);
 //		listOfUsers.add(u2);

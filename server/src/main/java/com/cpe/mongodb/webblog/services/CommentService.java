@@ -48,20 +48,29 @@ public class CommentService {
 
     // add comment to post
     public ResponseEntity<Object> addNewComment(CommentModel model) {
-        Comment comment = new Comment();
         Optional<User> user = userRepo.findById(model.getUser_id());
-        Optional<Post> post = postRepo.findById(model.getPost_id());
-
+        Comment comment = new Comment();
         comment.setMsg(model.getMsg());
-        comment.setCommentDate(model.getCommentDate());
         comment.setUsername(user.get().getUsername());
+        comment.setCommentDate(comment.getCommentDate());
 
-        List<Comment> listOfComments = new ArrayList<Comment>();
-        listOfComments = post.get().getComments();
-        listOfComments.add(comment);
+        Optional<Post> post = postRepo.findById(model.getPost_id()).map(post1 -> {
+            List<Comment> listOfComments = post1.getComments();
+            listOfComments.add(comment);
+            post1.setComments(listOfComments);
+            return postRepo.save(post1);
+        });
 
-        post.get().setComments(listOfComments);
-        postRepo.save(post.get());
+//        Post _post = post.get();
+//        _post.setTitle(_post.getTitle());
+//        _post.setStory(_post.getStory());
+//        _post.setPostDate(_post.getPostDate());
+//        _post.setVerified(_post.getVerified());
+//        _post.setUsername(_post.getUsername());
+//        _post.setTags(_post.getTags());
+//        _post.setComments(_post.getComments(comment));
+
+
 
         return ResponseEntity.ok("Comment is added.");
     }

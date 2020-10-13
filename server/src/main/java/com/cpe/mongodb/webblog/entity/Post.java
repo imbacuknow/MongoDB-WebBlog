@@ -5,6 +5,7 @@ import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -17,7 +18,7 @@ public class Post {
     private Date postDate;
     private boolean verified;
     private String username;
-    private List<Comment> comments;
+    private List<Comment> comments = new ArrayList<Comment>();
     private List<Tag> tags;
 
     public String getId() {
