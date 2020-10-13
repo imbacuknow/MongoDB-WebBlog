@@ -1,7 +1,5 @@
 package com.cpe.mongodb.webblog.model;
 
-import com.cpe.mongodb.webblog.entity.User;
-
 import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 import java.util.Date;
@@ -14,7 +12,7 @@ public class PostModel {
     private Date postDate;
     private boolean verified;
     @NotNull
-    private User user;
+    private String user_id;
     private String[] tags;
 
     public String getTitle() {
@@ -33,22 +31,6 @@ public class PostModel {
         this.story = story;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public String[] getTags() {
-        return tags;
-    }
-
-    public void setTags(String[] tags) {
-        this.tags = tags;
-    }
-
     public Date getPostDate() {
         Timestamp time = new Timestamp(System.currentTimeMillis());
         java.sql.Date date = new java.sql.Date(time.getTime());
@@ -60,10 +42,26 @@ public class PostModel {
     }
 
     public boolean getVerified() {
-        return false;
+        return verified;
     }
 
     public void setVerified(boolean verified) {
         this.verified = verified;
+    }
+
+    public String getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
+    }
+
+    public String[] getTags() {
+        return tags;
+    }
+
+    public void setTags(String[] tags) {
+        this.tags = tags;
     }
 }

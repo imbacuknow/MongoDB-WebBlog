@@ -17,7 +17,11 @@ public class User {
     private String email;
     private String name;
     private Date registerDate;
-    private Role role; //rolrOf
+    private String roleName;
+
+    public String getId() {
+        return id;
+    }
 
     public String getUsername() {
         return username;
@@ -61,13 +65,11 @@ public class User {
         this.registerDate = registerDate;
     }
 
-    public Role getRole() {
-        return role;
+    public String getRoleName() {
+        return roleName;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
-
-
 }

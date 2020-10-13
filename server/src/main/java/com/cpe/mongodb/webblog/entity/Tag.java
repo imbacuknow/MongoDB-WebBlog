@@ -3,14 +3,16 @@ package com.cpe.mongodb.webblog.entity;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.List;
-
 @Document(collection = "tag")
 public class Tag {
     @Id
     private String id;
     private String text;
     private String color;
+
+    public String getId() {
+        return id;
+    }
 
     public String getText() {
         return text;

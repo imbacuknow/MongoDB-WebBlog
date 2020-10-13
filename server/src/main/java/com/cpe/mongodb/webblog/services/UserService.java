@@ -1,7 +1,9 @@
 package com.cpe.mongodb.webblog.services;
 
+import com.cpe.mongodb.webblog.entity.Role;
 import com.cpe.mongodb.webblog.entity.User;
 import com.cpe.mongodb.webblog.model.UserModel;
+import com.cpe.mongodb.webblog.repository.RoleRepo;
 import com.cpe.mongodb.webblog.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +15,8 @@ import java.util.Optional;
 public class UserService {
     @Autowired
     private UserRepo userRepo;
+    @Autowired
+    private RoleRepo roleRepo;
 
     // findbyid
     public ResponseEntity<Object> retriveById(String id) {
@@ -24,7 +28,7 @@ public class UserService {
         }
     }
 
-    // verify
+    // confirm to login
     public ResponseEntity<Object> confirmUsernameAndLogin(String username, String password) {
         Optional<User> user = userRepo.findByUsernameAndPassword(username, password);
         if (user.isPresent()) {
@@ -47,7 +51,7 @@ public class UserService {
             user.setEmail(model.getEmail());
             user.setName(model.getName());
             user.setRegisterDate(model.getRegisterDate());
-            user.setRole(model.getRole());
+            user.setRoleName("Newbie");
             userRepo.insert(user);
 
             return ResponseEntity.ok("User is created.");

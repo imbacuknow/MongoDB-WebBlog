@@ -1,12 +1,17 @@
-package com.cpe.mongodb.webblog.entity;
+package com.cpe.mongodb.webblog.model;
 
+import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 import java.util.Date;
 
-public class Comment {
+public class CommentModel {
+    @NotNull
     private String msg;
     private Date commentDate;
-    private String username;
+    @NotNull
+    private String user_id;
+    @NotNull
+    private String post_id;
 
     public String getMsg() {
         return msg;
@@ -26,11 +31,19 @@ public class Comment {
         this.commentDate = commentDate;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUser_id() {
+        return user_id;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
+    }
+
+    public String getPost_id() {
+        return post_id;
+    }
+
+    public void setPost_id(String post_id) {
+        this.post_id = post_id;
     }
 }

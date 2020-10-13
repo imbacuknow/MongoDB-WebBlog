@@ -16,8 +16,13 @@ public class Post {
     private String story;
     private Date postDate;
     private boolean verified;
-    private User user;
+    private String username;
+    private List<Comment> comments;
     private List<Tag> tags;
+
+    public String getId() {
+        return id;
+    }
 
     public String getTitle() {
         return title;
@@ -53,12 +58,20 @@ public class Post {
         this.verified = verified;
     }
 
-    public User getUser() {
-        return user;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 
     public List<Tag> getTags() {

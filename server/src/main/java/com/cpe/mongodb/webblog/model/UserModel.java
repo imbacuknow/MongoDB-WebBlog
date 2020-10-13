@@ -1,7 +1,5 @@
 package com.cpe.mongodb.webblog.model;
 
-import com.cpe.mongodb.webblog.entity.Role;
-
 import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 import java.util.Date;
@@ -16,8 +14,6 @@ public class UserModel {
     @NotNull
     private String name;
     private Date registerDate;
-    @NotNull
-    private Role role;
 
     public String getUsername() {
         return username;
@@ -59,13 +55,5 @@ public class UserModel {
 
     public void setRegisterDate(Date registerDate) {
         this.registerDate = registerDate;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
     }
 }

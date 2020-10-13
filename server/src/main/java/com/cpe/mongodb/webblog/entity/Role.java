@@ -4,9 +4,6 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.validation.constraints.NotNull;
-import java.util.List;
-
 @NoArgsConstructor
 @Document(collection = "role")
 public class Role {
@@ -16,10 +13,6 @@ public class Role {
 
     public String getId() {
         return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getRoleOfUser() {

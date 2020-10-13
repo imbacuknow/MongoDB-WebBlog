@@ -2,13 +2,14 @@ package com.cpe.mongodb.webblog.services;
 
 import com.cpe.mongodb.webblog.entity.Post;
 import com.cpe.mongodb.webblog.entity.Tag;
+import com.cpe.mongodb.webblog.entity.User;
 import com.cpe.mongodb.webblog.model.PostModel;
 import com.cpe.mongodb.webblog.repository.PostRepo;
 import com.cpe.mongodb.webblog.repository.TagRepo;
+import com.cpe.mongodb.webblog.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,8 @@ public class PostService {
     private PostRepo postRepo;
     @Autowired
     private TagRepo tagRepo;
+    @Autowired
+    private UserRepo userRepo;
 
     // retrieve upcoming page
     public List<Post> retrieveUpcomingPage() {
@@ -43,11 +46,12 @@ public class PostService {
 
     // create new post
     public ResponseEntity<Object> createNewPost(PostModel model) {
+        Optional<User> user = userRepo.findById(model.getUser_id());
         Post post = new Post();
         post.setTitle(model.getTitle());
         post.setStory(model.getStory());
         post.setPostDate(model.getPostDate());
-        post.setUser(model.getUser());
+        post.setUsername(user.get().getUsername());
         post.setVerified(model.getVerified());
 
         List<Tag> listTags = new ArrayList<Tag>();

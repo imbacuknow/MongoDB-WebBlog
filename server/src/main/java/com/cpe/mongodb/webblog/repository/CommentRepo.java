@@ -9,5 +9,5 @@ import java.util.Collection;
 
 @Repository
 public interface CommentRepo extends MongoRepository<Comment, String> {
-    Collection<Comment> findByPost(Post post);
+//    Collection<Comment> findByPost(Post post);
 }
