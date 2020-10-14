@@ -24,6 +24,6 @@ npm run lint
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
 โปรเจคนี้ใช้
-vue add vuetify
-npm install --save axios 
+vue add vuetify, 
+npm install --save axios, 
 npm install --save vue-router
