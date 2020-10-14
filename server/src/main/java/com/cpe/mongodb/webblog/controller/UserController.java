@@ -28,6 +28,11 @@ public class UserController {
         return userService.createNewUser(model);
     }
 
+    @PutMapping("update/{username}/{role_id}")
+    public ResponseEntity<Object> updateUser(@PathVariable String username, @PathVariable String role_id) {
+        return userService.updateUserRole(username, role_id);
+    }
+
     @DeleteMapping("delete/{id}")
     public ResponseEntity<Object> delete(@PathVariable String id) {
         return userService.delete(id);

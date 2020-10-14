@@ -1,14 +1,17 @@
 package com.cpe.mongodb.webblog.services;
 
+import com.cpe.mongodb.webblog.entity.Post;
 import com.cpe.mongodb.webblog.entity.Role;
 import com.cpe.mongodb.webblog.entity.User;
 import com.cpe.mongodb.webblog.model.UserModel;
+import com.cpe.mongodb.webblog.repository.PostRepo;
 import com.cpe.mongodb.webblog.repository.RoleRepo;
 import com.cpe.mongodb.webblog.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -17,6 +20,8 @@ public class UserService {
     private UserRepo userRepo;
     @Autowired
     private RoleRepo roleRepo;
+    @Autowired
+    private PostRepo postRepo;
 
     // findbyid
     public ResponseEntity<Object> retriveById(String id) {
@@ -58,9 +63,27 @@ public class UserService {
         }
     }
 
+    // update role
+    public ResponseEntity<Object> updateUserRole(String username, String role_id) {
+        if (userRepo.findByUsername(username).isPresent()) {
+            Optional<User> user = userRepo.findByUsername(username).map(user1 -> {
+                Optional<Role> role = roleRepo.findById(role_id);
+                user1.setRoleName(role.get().getRoleOfUser());
+                return userRepo.save(user1);
+            });
+        } else {
+            return ResponseEntity.unprocessableEntity().body("No Records Found.");
+        }
+
+        return ResponseEntity.ok("Now updated user is done!");
+    }
+
     // delete user
     public ResponseEntity<Object> delete(String id) {
         if (userRepo.findById(id).isPresent()) {
+            Optional<User> user = userRepo.findById(id);
+            List<Post> posts = postRepo.findByUsername(user.get().getUsername());
+            postRepo.deleteAll(posts);
             userRepo.deleteById(id);
             if (userRepo.findById(id).isPresent()) {
                 return ResponseEntity.unprocessableEntity().body("Failed to delete(user) the specified record.");

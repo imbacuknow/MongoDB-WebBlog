@@ -9,4 +9,6 @@ import java.util.List;
 @Repository
 public interface PostRepo extends MongoRepository<Post, String> {
     List<Post> findByVerified(boolean verified);
+
+    List<Post> findByUsername(String username);
 }
